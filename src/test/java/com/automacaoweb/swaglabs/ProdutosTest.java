@@ -39,10 +39,10 @@ public class ProdutosTest {
 
     @Test
     public void devoValidarPaginaProdutos() {
-        ProdutosPages produtosPages = new ProdutosPages(driver);
         devoRealizarLogin();
-        String titulo = "PRODUCTS";
-        Assert.assertEquals(titulo, driver.findElement(By.xpath("//span[@class='title']")).getText());
+
+        ProdutosPages produtosPages = new ProdutosPages(driver);
+        produtosPages.validarTituloPaginaProduto("PRODUCTS");
 
     }
 

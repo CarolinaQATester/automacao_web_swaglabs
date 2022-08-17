@@ -34,6 +34,9 @@ public class ProdutosPages {
     private WebElement btnContinue;
 
     //validação
+    
+    @FindBy(how = How.XPATH, using = "//span[@class='title']")
+    private WebElement tituloPaginaProduto;
     @FindBy(how = How.XPATH, using = "//span[@class='title']")
     private WebElement titulo1;
     @FindBy(how = How.XPATH, using ="//div[@class='inventory_item_name']")
@@ -49,8 +52,8 @@ public class ProdutosPages {
         this.driver = driver;
     }
 
-    public void validarTituloPaginaProduto() {
-        tituloProduto.getText();
+    public void validarTituloPaginaProduto(String tituloProduto) {
+        tituloPaginaProduto.getText();
     }
 
     public void listaTodosProdutos() {
@@ -94,5 +97,5 @@ public class ProdutosPages {
     public void validaValorProduto(String valor){
         valorProduto.getText();
     }
-
+   
 }
