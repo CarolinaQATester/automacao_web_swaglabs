@@ -1,15 +1,11 @@
 package com.automacaoweb.swaglabs;
 
-import java.util.List;
-
 import org.junit.After;
 import org.junit.Assert;
 import org.junit.Before;
 import org.junit.Test;
 import org.openqa.selenium.By;
 import org.openqa.selenium.WebDriver;
-import org.openqa.selenium.WebElement;
-
 import com.automacaoweb.swaglabs.pages.LoginPage;
 import com.automacaoweb.swaglabs.pages.ProdutosPages;
 
@@ -57,10 +53,7 @@ public class ProdutosTest {
         devoRealizarLogin();
         // listar todos os produtos
          produtosPages.listaTodosProdutos();
-        
-
-    
-
+               
     }
 
     @Test
@@ -79,13 +72,14 @@ public class ProdutosTest {
     @Test
     public void devoValidarPaginaCompra(){
         devoListaUmProduto();
-        String titulo = "YOUR CART";
-        String nomeProduto = "Sauce Labs Backpack";
-        String valorProduto = "$29.99";
-        Assert.assertEquals(titulo, driver.findElement(By.xpath("//span[@class='title']")).getText());
-        Assert.assertEquals(nomeProduto, driver.findElement(By.xpath("//div[@class='inventory_item_name']")).getText());
-        Assert.assertEquals(valorProduto, driver.findElement(By.xpath("//div[@class='inventory_item_price']")).getText());
+        ProdutosPages produtosPages = new ProdutosPages(driver);
 
+
+        produtosPages.validarTitulo1("YOUR CART");
+        produtosPages.validaNomeProduto("Sauce Labs Backpack");
+        produtosPages.validaValorProduto("$29.99");
+
+        
     }
     @Test
     public void devoFinalizarCompra(){
@@ -99,10 +93,12 @@ public class ProdutosTest {
     @Test
     public void devoPreencherInformacaoCheckout(){
         devoFinalizarCompra();
-        driver.findElement(By.xpath("//input[@type='text'][@id='first-name']")).sendKeys("Carolina");
-        driver.findElement(By.xpath("//input[@type='text'][@id='last-name']")).sendKeys("Mesquita");
-        driver.findElement(By.xpath("//input[@type='text'][@id='postal-code']")).sendKeys("72875155");
-        driver.findElement(By.xpath("//input[@type='submit'][@id='continue']")).click();
+        ProdutosPages produtosPages = new ProdutosPages(driver);
+
+        produtosPages.inputFirstName();
+        produtosPages.inputLastName();;
+        produtosPages.inputPostalCode();
+        produtosPages.clicarBotaoContinue();
     }
     @Test
     public void devoValidarDadosFinaisCompra(){
